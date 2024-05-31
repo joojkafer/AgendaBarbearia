@@ -1,0 +1,61 @@
+create database AgendaBarbearia;
+drop database AgendaBarbearia;
+use AgendaBarbearia;
+
+create table cliente(
+	idCliente int AUTO_INCREMENT primary key,
+    nome varchar(30),
+    cpf varchar(14),
+    telefone varchar(14)
+);
+
+create table atendente(
+	idAtendente int AUTO_INCREMENT primary key,
+    nome varchar(30),
+    cpf varchar(14),
+    userLogin varchar(30),
+    userPassword varchar (16)
+);
+
+create table barbeiro(
+	idBarbeiro int auto_increment primary key,
+    nome varchar(30),
+    statusBarbeiro boolean
+);
+
+create table horarios(
+	idHorarios int auto_increment primary key,
+    horario time
+);
+
+INSERT INTO Horario (horario) VALUES 
+('09:00:00'), ('10:00:00'), ('11:00:00'), ('12:00:00'), 
+('13:00:00'), ('14:00:00'), ('15:00:00'), ('16:00:00'), 
+('17:00:00');
+
+create table servicos(
+	idServico int auto_increment primary key,
+    servico varchar (30),
+    descServico varchar (100),
+    valorServico double
+);
+
+create table agendamento(
+	idAgendamento int auto_increment primary key,
+    dataAgendamento date,
+    fk_idHorarios int,
+    fk_idBarbeiro int,
+    fk_idCliente int,
+    
+    foreign key (fk_idHorarios) references horarios(idHorarios),
+    foreign key (fk_idBarbeiro) references barbeiro(idBarbeiro),
+    foreign key (fk_idCliente) references cliente(idCliente)
+);
+
+create table servicosAgendamento(
+	idServicosAgendamento int auto_increment primary key,
+    fk_idAgendamento int,
+    fk_idServico int,
+	foreign key (fk_idAgendamento) references agendamento(idAgendamento),
+    foreign key (fk_idServico) references servicos(idServico)
+);
