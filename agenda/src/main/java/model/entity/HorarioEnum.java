@@ -11,7 +11,11 @@ public enum HorarioEnum {
     DEZESSEIS_HORAS("16:00:00"),
     DEZESSETE_HORAS("17:00:00");
 
-    private String horario;
+    public void setHorario(String horario) {
+		this.horario = horario;
+	}
+
+	private String horario;
 
     HorarioEnum(String horario) {
         this.horario = horario;
