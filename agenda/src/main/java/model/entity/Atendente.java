@@ -4,18 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "atendente")
 public class Atendente {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAtendente;
     private String nome;
     private String cpf;
     private String userLogin;
     private String userPassword;
 
-    // Getters and Setters
     public int getIdAtendente() {
         return idAtendente;
     }

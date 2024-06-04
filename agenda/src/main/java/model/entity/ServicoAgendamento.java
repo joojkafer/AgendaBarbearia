@@ -4,13 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "servicosAgendamento")
 public class ServicoAgendamento {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idServicosAgendamento;
 
     @ManyToOne
@@ -19,9 +21,8 @@ public class ServicoAgendamento {
 
     @ManyToOne
     @JoinColumn(name = "fk_idServico")
-    private Servicos servicos;
+    private Servicos servico;
 
-    // Getters and Setters
     public int getIdServicosAgendamento() {
         return idServicosAgendamento;
     }
@@ -38,11 +39,11 @@ public class ServicoAgendamento {
         this.agendamento = agendamento;
     }
 
-    public Servicos getServicos() {
-        return servicos;
+    public Servicos getServico() {
+        return servico;
     }
 
-    public void setServicos(Servicos servicos) {
-        this.servicos = servicos;
+    public void setServico(Servicos servico) {
+        this.servico = servico;
     }
 }

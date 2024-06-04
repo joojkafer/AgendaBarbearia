@@ -16,15 +16,19 @@ public class ServicoAgendamentoController {
         return servicoAgendamentoRepository.save(servicoAgendamento);
     }
 
-    public ServicoAgendamento updateServicoAgendamento(Long id, ServicoAgendamento servicoAgendamentoDetails) {
+    public ServicoAgendamento updateServicoAgendamento(int id, ServicoAgendamento servicoAgendamentoDetails) {
         ServicoAgendamento servicoAgendamento = servicoAgendamentoRepository.findById(id).orElseThrow(() -> new RuntimeException("ServicoAgendamento not found"));
-        servicoAgendamento.setServicos(servicoAgendamentoDetails.getServicos());
-        // Atualize outros campos conforme necessário
+        servicoAgendamento.setAgendamento(servicoAgendamentoDetails.getAgendamento());
+        servicoAgendamento.setServico(servicoAgendamentoDetails.getServico());
         return servicoAgendamentoRepository.save(servicoAgendamento);
     }
 
-    public void deleteServicoAgendamento(Long id) {
+    public void deleteServicoAgendamento(int id) {
         ServicoAgendamento servicoAgendamento = servicoAgendamentoRepository.findById(id).orElseThrow(() -> new RuntimeException("ServicoAgendamento not found"));
         servicoAgendamentoRepository.delete(servicoAgendamento);
+    }
+
+    public ServicoAgendamento findById(int id) {
+        return servicoAgendamentoRepository.findById(id).orElseThrow(() -> new RuntimeException("ServicoAgendamento not found"));
     }
 }

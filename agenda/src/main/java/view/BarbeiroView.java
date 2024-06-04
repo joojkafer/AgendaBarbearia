@@ -23,33 +23,45 @@ public class BarbeiroView {
                 case 1:
                     List<Barbeiro> barbeiros = barbeiroController.getAllBarbeiros();
                     for (Barbeiro barbeiro : barbeiros) {
-                        System.out.println(barbeiro);
+                        System.out.println("ID: " + barbeiro.getIdBarbeiro() +
+                                           ", Nome: " + barbeiro.getNome() +
+                                           ", Status: " + (barbeiro.isStatusBarbeiro() ? "Ativo" : "Inativo"));
                     }
                     break;
                 case 2:
                     System.out.println("Digite o nome do barbeiro:");
-                    String name = scanner.nextLine();
+                    String nome = scanner.nextLine();
+                    System.out.println("Digite o status do barbeiro (true para ativo, false para inativo):");
+                    boolean status = scanner.nextBoolean();
+                    scanner.nextLine();
                     Barbeiro novoBarbeiro = new Barbeiro();
-                    novoBarbeiro.setName(name);
+                    novoBarbeiro.setNome(nome);
+                    novoBarbeiro.setStatusBarbeiro(status);
                     barbeiroController.createBarbeiro(novoBarbeiro);
                     break;
                 case 3:
                     System.out.println("Digite o ID do barbeiro para atualizar:");
-                    Long id = scanner.nextLong();
-                    scanner.nextLine(); // Consume newline
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
                     System.out.println("Digite o novo nome do barbeiro:");
-                    String newName = scanner.nextLine();
+                    String novoNome = scanner.nextLine();
+                    System.out.println("Digite o novo status do barbeiro (true para ativo, false para inativo):");
+                    boolean novoStatus = scanner.nextBoolean();
+                    scanner.nextLine();
                     Barbeiro barbeiroDetails = new Barbeiro();
-                    barbeiroDetails.setName(newName);
+                    barbeiroDetails.setNome(novoNome);
+                    barbeiroDetails.setStatusBarbeiro(novoStatus);
                     barbeiroController.updateBarbeiro(id, barbeiroDetails);
                     break;
                 case 4:
                     System.out.println("Digite o ID do barbeiro para deletar:");
-                    Long deleteId = scanner.nextLong();
+                    int deleteId = scanner.nextInt();
                     barbeiroController.deleteBarbeiro(deleteId);
                     break;
                 case 0:
                     return;
+                default:
+                    System.out.println("Opção inválida, tente novamente.");
             }
         }
     }

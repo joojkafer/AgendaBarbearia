@@ -16,15 +16,19 @@ public class BarbeiroController {
         return barbeiroRepository.save(barbeiro);
     }
 
-    public Barbeiro updateBarbeiro(Long id, Barbeiro barbeiroDetails) {
+    public Barbeiro updateBarbeiro(int id, Barbeiro barbeiroDetails) {
         Barbeiro barbeiro = barbeiroRepository.findById(id).orElseThrow(() -> new RuntimeException("Barbeiro not found"));
         barbeiro.setNome(barbeiroDetails.getNome());
-        // Atualize outros campos conforme necessário
+        barbeiro.setStatusBarbeiro(barbeiroDetails.isStatusBarbeiro());
         return barbeiroRepository.save(barbeiro);
     }
 
-    public void deleteBarbeiro(Long id) {
+    public void deleteBarbeiro(int id) {
         Barbeiro barbeiro = barbeiroRepository.findById(id).orElseThrow(() -> new RuntimeException("Barbeiro not found"));
         barbeiroRepository.delete(barbeiro);
+    }
+
+    public Barbeiro findById(int id) {
+        return barbeiroRepository.findById(id).orElseThrow(() -> new RuntimeException("Barbeiro not found"));
     }
 }

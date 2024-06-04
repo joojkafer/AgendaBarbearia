@@ -16,15 +16,21 @@ public class AtendenteController {
         return atendenteRepository.save(atendente);
     }
 
-    public Atendente updateAtendente(Long id, Atendente atendenteDetails) {
+    public Atendente updateAtendente(int id, Atendente atendenteDetails) {
         Atendente atendente = atendenteRepository.findById(id).orElseThrow(() -> new RuntimeException("Atendente not found"));
         atendente.setNome(atendenteDetails.getNome());
-        // Atualize outros campos conforme necessário
+        atendente.setCpf(atendenteDetails.getCpf());
+        atendente.setUserLogin(atendenteDetails.getUserLogin());
+        atendente.setUserPassword(atendenteDetails.getUserPassword());
         return atendenteRepository.save(atendente);
     }
 
-    public void deleteAtendente(Long id) {
+    public void deleteAtendente(int id) {
         Atendente atendente = atendenteRepository.findById(id).orElseThrow(() -> new RuntimeException("Atendente not found"));
         atendenteRepository.delete(atendente);
+    }
+
+    public Atendente findById(int id) {
+        return atendenteRepository.findById(id).orElseThrow(() -> new RuntimeException("Atendente not found"));
     }
 }

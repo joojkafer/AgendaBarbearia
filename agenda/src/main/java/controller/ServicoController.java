@@ -16,15 +16,20 @@ public class ServicoController {
         return servicoRepository.save(servico);
     }
 
-    public Servicos updateServico(Long id, Servicos servicoDetails) {
+    public Servicos updateServico(int id, Servicos servicoDetails) {
         Servicos servico = servicoRepository.findById(id).orElseThrow(() -> new RuntimeException("Servico not found"));
-        servico.setName(servicoDetails.getName());
-        // Atualize outros campos conforme necessário
+        servico.setServico(servicoDetails.getServico());
+        servico.setDescServico(servicoDetails.getDescServico());
+        servico.setValorServico(servicoDetails.getValorServico());
         return servicoRepository.save(servico);
     }
 
-    public void deleteServico(Long id) {
+    public void deleteServico(int id) {
         Servicos servico = servicoRepository.findById(id).orElseThrow(() -> new RuntimeException("Servico not found"));
         servicoRepository.delete(servico);
+    }
+
+    public Servicos findById(int id) {
+        return servicoRepository.findById(id).orElseThrow(() -> new RuntimeException("Servico not found"));
     }
 }

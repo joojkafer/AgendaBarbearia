@@ -1,27 +1,21 @@
 package model.entity;
 
-
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "cliente")
 public class Cliente {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCliente;
     private String nome;
     private String cpf;
     private String telefone;
 
-    @OneToMany(mappedBy = "cliente")
-    private List<Agendamento> agendamentos;
-
-    // Getters and Setters
     public int getIdCliente() {
         return idCliente;
     }
@@ -52,13 +46,5 @@ public class Cliente {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public List<Agendamento> getAgendamentos() {
-        return agendamentos;
-    }
-
-    public void setAgendamentos(List<Agendamento> agendamentos) {
-        this.agendamentos = agendamentos;
     }
 }

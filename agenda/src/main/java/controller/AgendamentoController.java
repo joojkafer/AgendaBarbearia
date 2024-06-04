@@ -16,15 +16,21 @@ public class AgendamentoController {
         return agendamentoRepository.save(agendamento);
     }
 
-    public Agendamento updateAgendamento(Long id, Agendamento agendamentoDetails) {
+    public Agendamento updateAgendamento(int id, Agendamento agendamentoDetails) {
         Agendamento agendamento = agendamentoRepository.findById(id).orElseThrow(() -> new RuntimeException("Agendamento not found"));
+        agendamento.setDataAgendamento(agendamentoDetails.getDataAgendamento());
+        agendamento.setHorario(agendamentoDetails.getHorario());
+        agendamento.setBarbeiro(agendamentoDetails.getBarbeiro());
         agendamento.setCliente(agendamentoDetails.getCliente());
-        // Atualize outros campos conforme necessário
         return agendamentoRepository.save(agendamento);
     }
 
-    public void deleteAgendamento(Long id) {
+    public void deleteAgendamento(int id) {
         Agendamento agendamento = agendamentoRepository.findById(id).orElseThrow(() -> new RuntimeException("Agendamento not found"));
         agendamentoRepository.delete(agendamento);
+    }
+
+    public Agendamento findById(int id) {
+        return agendamentoRepository.findById(id).orElseThrow(() -> new RuntimeException("Agendamento not found"));
     }
 }

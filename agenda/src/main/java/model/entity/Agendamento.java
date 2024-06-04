@@ -1,9 +1,5 @@
 package model.entity;
 
-
-import java.sql.Date;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,17 +7,22 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import java.util.List;
+import java.sql.Date;
 
 @Entity
+@Table(name = "agendamento")
 public class Agendamento {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAgendamento;
     private Date dataAgendamento;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_idHorarios")
-    private HorarioEnum horarios;
+    @Enumerated(EnumType.STRING)
+    private HorarioEnum horario;
 
     @ManyToOne
     @JoinColumn(name = "fk_idBarbeiro")
@@ -34,7 +35,6 @@ public class Agendamento {
     @OneToMany(mappedBy = "agendamento")
     private List<ServicoAgendamento> servicosAgendamentos;
 
-    // Getters and Setters
     public int getIdAgendamento() {
         return idAgendamento;
     }
@@ -51,12 +51,12 @@ public class Agendamento {
         this.dataAgendamento = dataAgendamento;
     }
 
-    public HorarioEnum getHorarios() {
-        return horarios;
+    public HorarioEnum getHorario() {
+        return horario;
     }
 
-    public void setHorarios(HorarioEnum horarios) {
-        this.horarios = horarios;
+    public void setHorario(HorarioEnum horario) {
+        this.horario = horario;
     }
 
     public Barbeiro getBarbeiro() {

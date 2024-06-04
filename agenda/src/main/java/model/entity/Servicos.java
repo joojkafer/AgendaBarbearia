@@ -1,27 +1,21 @@
 package model.entity;
 
-
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "servicos")
 public class Servicos {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idServico;
     private String servico;
     private String descServico;
     private double valorServico;
 
-    @OneToMany(mappedBy = "servicos")
-    private List<ServicoAgendamento> servicosAgendamentos;
-
-    // Getters and Setters
     public int getIdServico() {
         return idServico;
     }
@@ -52,13 +46,5 @@ public class Servicos {
 
     public void setValorServico(double valorServico) {
         this.valorServico = valorServico;
-    }
-
-    public List<ServicoAgendamento> getServicosAgendamentos() {
-        return servicosAgendamentos;
-    }
-
-    public void setServicosAgendamentos(List<ServicoAgendamento> servicosAgendamentos) {
-        this.servicosAgendamentos = servicosAgendamentos;
     }
 }

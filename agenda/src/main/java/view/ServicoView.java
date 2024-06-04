@@ -18,38 +18,57 @@ public class ServicoView {
             System.out.println("4. Deletar Servico");
             System.out.println("0. Sair");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
             switch (choice) {
                 case 1:
                     List<Servicos> servicos = servicoController.getAllServicos();
                     for (Servicos servico : servicos) {
-                        System.out.println(servico);
+                        System.out.println("ID: " + servico.getIdServico() +
+                                           ", Serviço: " + servico.getServico() +
+                                           ", Descrição: " + servico.getDescServico() +
+                                           ", Valor: " + servico.getValorServico());
                     }
                     break;
                 case 2:
-                    System.out.println("Digite o nome do servico:");
-                    String name = scanner.nextLine();
+                    System.out.println("Digite o nome do serviço:");
+                    String nome = scanner.nextLine();
+                    System.out.println("Digite a descrição do serviço:");
+                    String descricao = scanner.nextLine();
+                    System.out.println("Digite o valor do serviço:");
+                    double valor = scanner.nextDouble();
+                    scanner.nextLine();
                     Servicos novoServico = new Servicos();
-                    novoServico.setName(name);
+                    novoServico.setServico(nome);
+                    novoServico.setDescServico(descricao);
+                    novoServico.setValorServico(valor);
                     servicoController.createServico(novoServico);
                     break;
                 case 3:
-                    System.out.println("Digite o ID do servico para atualizar:");
-                    Long id = scanner.nextLong();
-                    scanner.nextLine(); // Consume newline
-                    System.out.println("Digite o novo nome do servico:");
-                    String newName = scanner.nextLine();
+                    System.out.println("Digite o ID do serviço para atualizar:");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Digite o novo nome do serviço:");
+                    String novoNome = scanner.nextLine();
+                    System.out.println("Digite a nova descrição do serviço:");
+                    String novaDescricao = scanner.nextLine();
+                    System.out.println("Digite o novo valor do serviço:");
+                    double novoValor = scanner.nextDouble();
+                    scanner.nextLine();
                     Servicos servicoDetails = new Servicos();
-                    servicoDetails.setName(newName);
+                    servicoDetails.setServico(novoNome);
+                    servicoDetails.setDescServico(novaDescricao);
+                    servicoDetails.setValorServico(novoValor);
                     servicoController.updateServico(id, servicoDetails);
                     break;
                 case 4:
-                    System.out.println("Digite o ID do servico para deletar:");
-                    Long deleteId = scanner.nextLong();
+                    System.out.println("Digite o ID do serviço para deletar:");
+                    int deleteId = scanner.nextInt();
                     servicoController.deleteServico(deleteId);
                     break;
                 case 0:
                     return;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
             }
         }
     }
