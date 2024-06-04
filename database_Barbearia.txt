@@ -8,6 +8,12 @@ create table cliente(
     telefone varchar(14)
 );
 
+CREATE TABLE hibernate_sequence (
+    next_val bigint
+);
+
+INSERT INTO hibernate_sequence (next_val) VALUES (1);
+
 create table atendente(
 	idAtendente int AUTO_INCREMENT primary key,
     nome varchar(30),
